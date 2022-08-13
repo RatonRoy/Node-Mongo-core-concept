@@ -24,7 +24,6 @@ const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology:
 		this is comment out because I want to use the database insertion again and again after one insertion complete. 
 	}
 }
-
 run().catch(console.dir);
  * 
  * ********* */

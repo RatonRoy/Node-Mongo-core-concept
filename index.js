@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const { MongoClient, ServerApiVersion } = require('mongodb');
 const app = express();
-const port = process.env.PORT || 5000; 
+const port = process.env.PORT || 5000;
 
 // user name : crud-operation
 // password : iUBZuAo1pIIgIpxF
@@ -19,11 +19,13 @@ async function run() {
 	try {
 		await client.connect();
 		const userCollection = client.db('demoDatabase').collection('demoCollection');
-		const demoObject = {
-			name: 'Mohona Nodi', email: 'mohonanodi@gmail.com'
-		}
-		const result = await userCollection.insertOne(demoObject);
-		console.log(`A document was inserted with the _id: ${result.insertedId}`);
+		app.post('/user', (req, res) => {
+			const newUser = req.body;
+			console.log('adding new user here', newUser);
+			res.send({
+				result: 'success'
+			});
+		})
 	}
 	finally {
 		// await client.close();
