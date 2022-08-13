@@ -10,6 +10,15 @@
  * 3. convert the cursor to array 
  * 3.1 const users = await cursor.toArray();
  * 4. Last steps is res.send(users);
+ * 
+ * Full code below 
+ * // to read the data from the database use this method here.
+		app.get('/users', async (req, res) => {
+			const query = {};
+			const cursor = userCollection.find(query);
+			const users = await cursor.toArray();
+			res.send(users);
+		})
  * })
  * 
  * 
