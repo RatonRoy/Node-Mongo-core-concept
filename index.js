@@ -19,12 +19,20 @@ async function run() {
 	try {
 		await client.connect();
 		const userCollection = client.db('demoDatabase').collection('demoCollection');
+		// to post the data to the database by using this 
 		app.post('/user', async (req, res) => {
 			const newUser = req.body;
 			console.log('adding new user here', newUser);
 			// by below line data insert to the mongodb database. 
 			const result = await userCollection.insertOne(newUser);
 			res.send(result);
+		})
+		// to read the data from the database use this method here.
+		app.get('/users', async (req, res) => {
+			const query = {};
+			const cursor = userCollection.find(query);
+			const users = await cursor.toArray();
+			res.send(users);
 		})
 	}
 	finally {
