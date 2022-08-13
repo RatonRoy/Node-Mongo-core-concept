@@ -14,4 +14,9 @@
 		res.send({
 		result : 'success'
 		})
+		-----------------------------------
+		*2. Inserted data to the mongodb database. 
+	   -------------------------------------------------
+	   2.1. const result = await userCollection.insertOne(newUser);
+	   2.2. res.send(result);
  * *********** */

@@ -19,12 +19,12 @@ async function run() {
 	try {
 		await client.connect();
 		const userCollection = client.db('demoDatabase').collection('demoCollection');
-		app.post('/user', (req, res) => {
+		app.post('/user', async (req, res) => {
 			const newUser = req.body;
 			console.log('adding new user here', newUser);
-			res.send({
-				result: 'success'
-			});
+			// by below line data insert to the mongodb database. 
+			const result = await userCollection.insertOne(newUser);
+			res.send(result);
 		})
 	}
 	finally {
